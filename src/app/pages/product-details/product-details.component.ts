@@ -83,8 +83,6 @@ export class ProductDetailsComponent implements OnInit {
     let localProducts: Array<IProduct> = [];
     product.ingredients = this.ingredientsToPush;
     product.price += this.totalIngredientPrice;
-    console.log( product.ingredients);
-    
     if (localStorage.length > 0 && localStorage.getItem('products')) {
       localProducts = JSON.parse(localStorage.getItem('products'));
       if (localProducts.some(prod => prod.id === product.id)) {
@@ -100,9 +98,9 @@ export class ProductDetailsComponent implements OnInit {
     }
     this.viewIngredients = [];
     product.ingredients = [];
+    product.price = firstPrice;
     this.ingredientPrice = 0;
     this.totalIngredientPrice = 0;
-    product.price = firstPrice;
     product.count = 1;
     this.orderService.basket.next(localProducts);
   }
